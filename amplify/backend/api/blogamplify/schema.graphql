@@ -1,4 +1,6 @@
-type Post @model {
+type Post @model 
+@key(name: "byPostId", fields: ["id"], queryField: "listByPostIds")
+{
   id: ID!
   title: String!
   content: String
@@ -7,7 +9,8 @@ type Post @model {
   comments: [Comment] @connection(keyName: "byPost", fields: ["id"])
 }
 
-type Comment @model @key(name: "byPost", fields: ["postID", "content"]) {
+type Comment @model 
+  @key(name: "byPost", fields: ["postID", "content"]) {
   id: ID!
   postID: ID!
   content: String!
@@ -15,3 +18,4 @@ type Comment @model @key(name: "byPost", fields: ["postID", "content"]) {
   creatorName: String
   post: Post @connection(fields: ["postID"])
 }
+

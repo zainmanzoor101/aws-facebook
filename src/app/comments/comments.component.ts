@@ -35,19 +35,22 @@ export class CommentsComponent implements OnInit {
 
         // Subscription for adding the new comment
         this.api.OnCreateCommentListener.subscribe((res: any) => {
-            if (this.postComments.length < 1) {
-                this.api.GetPost(this.post.id).then((res: any) => {
-                    this.postComments = res.comments.items;
-
-                })
-            }
-            //creating the notifications
-            if(res.value.data.onCreateComment.creatorId !== res.value.data.onCreateComment.post.creatorId){
-                if(this.currentUser.attributes.sub === res.value.data.onCreateComment.post.creatorId){
-                    this.toastr.info(`${res.value.data.onCreateComment.creatorName} has commented on your post...`, 'Notification');
+            debugger;
+            if(res){
+                if (this.postComments.length < 1) {
+                    this.api.GetPost(this.post.id).then((res: any) => {
+                        this.postComments = res.comments.items;
+    
+                    })
                 }
+                //creating the notifications
+                if(res.value.data.onCreateComment.creatorId !== res.value.data.onCreateComment.post.creatorId){
+                    if(this.currentUser.attributes.sub === res.value.data.onCreateComment.post.creatorId){
+                        this.toastr.info(`${res.value.data.onCreateComment.creatorName} has commented on your post...`, 'Notification');
+                    }
+                }
+                this.postComments = [...this.postComments, res.value.data.onCreateComment];
             }
-            this.postComments = [...this.postComments, res.value.data.onCreateComment];
         });
     }
 
