@@ -1,0 +1,93 @@
+.custom-card {
+    background-color: lightgray;
+    margin-top: 10px;
+    padding: 2px;
+    border-radius:10px;
+    height: 100%; 
+    width: 100%;
+}
+
+.post{
+    height: 30%;   
+}
+
+
+.comment a{
+    border: none;
+    background-color: lightgray;
+    color: blue;
+}
+
+.comment-input{
+    width: 75%;
+    float: left;
+    margin-bottom: 10px;
+}
+
+.comment-addBtn {
+    width: 22%;
+    float: right;
+    margin-bottom: 10px;
+}
+
+.navigation-dropdown {
+    top: 50px;
+    background-color:#eeeeee;
+    border:#69C 4px solid;
+    margin:0;
+    padding:15px 15px 15px 30px;
+    /*This here*/
+    -webkit-transition: 1s ease-out;
+    -moz-transition: 1s ease-out;
+    -ms-transition: 1s ease-out;
+    transition: 1s ease-out;
+    height: 0;
+    opacity: 0;
+    overflow: auto;
+}
+
+
+.hide {
+    opacity: 1 !important;
+    height: 30% !important;
+}
+
+#navigation-dropdown ul {
+    float:left;
+    width:150px;
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+#navigation-dropdown ul li {
+    float:left;
+    width:100%;
+    font-size:14px;
+    line-height:24px;
+    margin:0;
+    padding:0;
+}
+#navigation-dropdown ul li a {
+    color:#69C;
+    text-decoration:none;
+}
+#navigation-dropdown ul li a:hover {
+    text-decoration:underline;
+}
+#navigation-dropdown ul li a:active {
+    color:#dddddd;
+}
+#navigation-dropdown input {
+    float:left;
+    cursor:pointer;
+    color:#333333;
+    font-size:14px;
+    font-family:Arial, sans-serif;
+}
+
+.user-logo{
+    height: 10%;
+    width: 5%;
+    border-radius:45%;
+    display:inline-block;
+}

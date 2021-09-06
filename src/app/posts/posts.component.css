@@ -1,0 +1,12 @@
+
+
+.post-wrapper{
+    margin-top: 10px;
+    height: 55vh;
+    width: 45vw;
+}
+
+.post-container{
+    display: grid;
+    justify-content: center;
+}
