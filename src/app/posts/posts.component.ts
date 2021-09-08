@@ -65,6 +65,7 @@ export class PostsComponent implements OnInit {
         this.spinner.show();
         this.api.ListPosts().then((res: any) => {
             this.posts = res.items;
+            console.log(this.posts);
             this.spinner.hide();
         }).catch((err: Error) => {
             console.log('Error getting the data: ', err);

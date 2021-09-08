@@ -13,6 +13,15 @@ subscription OnCreatePost {
         content
         creatorId
         creatorName
+        post {
+          id
+          title
+          content
+          creatorId
+          creatorName
+          createdAt
+          updatedAt
+        }
         createdAt
         updatedAt
       }
@@ -36,6 +45,15 @@ subscription OnUpdatePost {
         content
         creatorId
         creatorName
+        post {
+          id
+          title
+          content
+          creatorId
+          creatorName
+          createdAt
+          updatedAt
+        }
         createdAt
         updatedAt
       }
@@ -59,6 +77,15 @@ subscription OnDeletePost {
         content
         creatorId
         creatorName
+        post {
+          id
+          title
+          content
+          creatorId
+          creatorName
+          createdAt
+          updatedAt
+        }
         createdAt
         updatedAt
       }
@@ -82,6 +109,15 @@ subscription OnCreateComment {
       creatorId
       creatorName
       comments {
+        items {
+          id
+          postID
+          content
+          creatorId
+          creatorName
+          createdAt
+          updatedAt
+        }
         nextToken
       }
       createdAt
@@ -105,6 +141,15 @@ subscription OnUpdateComment {
       creatorId
       creatorName
       comments {
+        items {
+          id
+          postID
+          content
+          creatorId
+          creatorName
+          createdAt
+          updatedAt
+        }
         nextToken
       }
       createdAt
@@ -128,6 +173,15 @@ subscription OnDeleteComment {
       creatorId
       creatorName
       comments {
+        items {
+          id
+          postID
+          content
+          creatorId
+          creatorName
+          createdAt
+          updatedAt
+        }
         nextToken
       }
       createdAt

@@ -16,6 +16,15 @@ mutation CreatePost(
         content
         creatorId
         creatorName
+        post {
+          id
+          title
+          content
+          creatorId
+          creatorName
+          createdAt
+          updatedAt
+        }
         createdAt
         updatedAt
       }
@@ -42,6 +51,15 @@ mutation UpdatePost(
         content
         creatorId
         creatorName
+        post {
+          id
+          title
+          content
+          creatorId
+          creatorName
+          createdAt
+          updatedAt
+        }
         createdAt
         updatedAt
       }
@@ -68,6 +86,15 @@ mutation DeletePost(
         content
         creatorId
         creatorName
+        post {
+          id
+          title
+          content
+          creatorId
+          creatorName
+          createdAt
+          updatedAt
+        }
         createdAt
         updatedAt
       }
@@ -94,6 +121,15 @@ mutation CreateComment(
       creatorId
       creatorName
       comments {
+        items {
+          id
+          postID
+          content
+          creatorId
+          creatorName
+          createdAt
+          updatedAt
+        }
         nextToken
       }
       createdAt
@@ -120,6 +156,15 @@ mutation UpdateComment(
       creatorId
       creatorName
       comments {
+        items {
+          id
+          postID
+          content
+          creatorId
+          creatorName
+          createdAt
+          updatedAt
+        }
         nextToken
       }
       createdAt
@@ -146,6 +191,15 @@ mutation DeleteComment(
       creatorId
       creatorName
       comments {
+        items {
+          id
+          postID
+          content
+          creatorId
+          creatorName
+          createdAt
+          updatedAt
+        }
         nextToken
       }
       createdAt

@@ -1,7 +1,32 @@
 <div class="post-container">
-    <button type="button" style="float: right;" class="btn btn-primary" (click)="onCreate()">Add Post!</button>
-    <div class="post-wrapper" *ngFor="let post of posts">
-        <single-post [post]="post"></single-post>
+    <div class="left-portion-outer">
+        <div class="left-portion-inner">
+            <img src="../../assets/ad1.jpg" alt="">
+        </div>
+    </div>
+    <div class="middle-portion-outer">
+        <div class="middle-portion-inner">
+           <button type="button" class="btn btn-primary" (click)="onCreate()">Add Post!</button>
+            <div class="post-wrapper" *ngFor="let post of posts">
+                <single-post [post]="post"></single-post>
+            </div>
+        </div>
+    </div>
+    <div class="right-portion-outer">
+        <div class="right-portion-inner">
+            <div class="story">
+                <h5>Stories</h5>
+                <div class="your-story">
+                    <div>
+                        <img class="your-story-img" src="../../assets/add-story.svg" alt="">
+                    </div>
+                    <div>
+                        <h5 class="your-story-text">Add Your Story</h5>
+                    </div>
+                </div>
+            </div>
+            <img src="../../assets/ad1.jpg" alt="">
+        </div>
     </div>
 </div>
 <div>

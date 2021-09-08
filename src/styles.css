@@ -1,9 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-    background-color: #95BBC9;
+  background-color: #95bbc9;
 }
 
 .custom-container {
-    padding: 10px;   
+  padding-top: 80px;
+  padding-left: 20px;
 }
 
+.custom-navbar {
+  background-color: #1763b4;
+  /* position: fixed !important; */
+  width: 100%;
+  z-index: 1;
+}

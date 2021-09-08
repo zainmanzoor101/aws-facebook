@@ -6,11 +6,11 @@ type Post @model
   content: String
   creatorId: String
   creatorName: String
-  comments: [Comment] @connection(keyName: "byPost", fields: ["id"])
+  comments: [Comment] @connection(keyName: "byPost", fields: ["id"], limit: 1000)
 }
 
 type Comment @model 
-  @key(name: "byPost", fields: ["postID", "content"]) {
+  @key(name: "byPost", fields: ["postID", "content"], queryField: "listByPostComments") {
   id: ID!
   postID: ID!
   content: String!

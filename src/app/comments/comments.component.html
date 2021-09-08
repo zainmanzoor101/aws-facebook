@@ -1,24 +1,34 @@
-<div class="row comment">
-    <!-- <h5 class="col-9 card-title">Comments</h5> -->
+<!-- <div class="row comment">
+    <!-- <h5 class="col-9 card-title">Comments</h5>
     <a class="col-8" (click)="dropIt()">show comments</a>
     <br>
-</div>
-<form [formGroup]="commentForm" (ngSubmit)="onAddComment(commentForm.value, post)">
-    <div class="form-group">
-        <div class="comment-input">
-            <input type="text" class="form-control" name="title" formControlName="title" aria-label="Add Comment..." />
+</div> -->
+<div [id]="post.id" (click)="dropIt()" class="comment-wrap">
+
+    <form [formGroup]="commentForm" (ngSubmit)="onAddComment(commentForm.value, post)">
+        <div class="form-group row new-comment-wrap">
+            <div class="col-8">
+                <input style="font-size:15px;" type="text" class="form-control" name="title" formControlName="title"
+                    aria-label="Add Comment..." />
+            </div>
+            <div class="col">
+                <button style="font-size:15px;" type="submit" [disabled]="commentForm.invalid" class="btn btn-primary">Add Comment</button>
+            </div>
+            <br>
         </div>
-        <div class="comment-addBtn">
-            <button type="submit" [disabled]="commentForm.invalid" class="btn btn-primary">Add Comment</button>
-        </div>
-        <br>
-    </div>
-</form>
-<div [id]="post.id" class="navigation-dropdown">
-    <ul style="list-style: none; margin: 0; padding: 0;">
-        <li *ngFor="let comment of postComments">
-            <img class="user-logo" src="../../assets/Round-Profile-Picture.png" alt="">
-                {{comment.content}}
+    </form>
+
+    <ul style="list-style: none; margin: 0; padding: 0; background-color:#D5E5F7">
+        <li *ngFor="let comment of postComments" class="list-comment">
+                <div class="comment-card">
+                    <img class="user-logo" src="../../assets/Round-Profile-Picture.png" alt="">
+                    &nbsp;
+                    <p>{{comment.creatorName}}</p>
+                </div>
+                <div class="comment-text">
+                    {{comment.content}}
+                </div>
+                <hr>
         </li>
     </ul>
 </div>

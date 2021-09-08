@@ -191,6 +191,21 @@ export type ModelCommentFilterInput = {
   not?: ModelCommentFilterInput | null;
 };
 
+export enum ModelSortDirection {
+  ASC = "ASC",
+  DESC = "DESC"
+}
+
+export type ModelStringKeyConditionInput = {
+  eq?: string | null;
+  le?: string | null;
+  lt?: string | null;
+  ge?: string | null;
+  gt?: string | null;
+  between?: Array<string | null> | null;
+  beginsWith?: string | null;
+};
+
 export type CreatePostMutation = {
   __typename: "Post";
   id: string;
@@ -207,6 +222,16 @@ export type CreatePostMutation = {
       content: string;
       creatorId?: string | null;
       creatorName?: string | null;
+      post?: {
+        __typename: "Post";
+        id: string;
+        title: string;
+        content?: string | null;
+        creatorId?: string | null;
+        creatorName?: string | null;
+        createdAt: string;
+        updatedAt: string;
+      } | null;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
@@ -232,6 +257,16 @@ export type UpdatePostMutation = {
       content: string;
       creatorId?: string | null;
       creatorName?: string | null;
+      post?: {
+        __typename: "Post";
+        id: string;
+        title: string;
+        content?: string | null;
+        creatorId?: string | null;
+        creatorName?: string | null;
+        createdAt: string;
+        updatedAt: string;
+      } | null;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
@@ -257,6 +292,16 @@ export type DeletePostMutation = {
       content: string;
       creatorId?: string | null;
       creatorName?: string | null;
+      post?: {
+        __typename: "Post";
+        id: string;
+        title: string;
+        content?: string | null;
+        creatorId?: string | null;
+        creatorName?: string | null;
+        createdAt: string;
+        updatedAt: string;
+      } | null;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
@@ -282,6 +327,16 @@ export type CreateCommentMutation = {
     creatorName?: string | null;
     comments?: {
       __typename: "ModelCommentConnection";
+      items?: Array<{
+        __typename: "Comment";
+        id: string;
+        postID: string;
+        content: string;
+        creatorId?: string | null;
+        creatorName?: string | null;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
       nextToken?: string | null;
     } | null;
     createdAt: string;
@@ -307,6 +362,16 @@ export type UpdateCommentMutation = {
     creatorName?: string | null;
     comments?: {
       __typename: "ModelCommentConnection";
+      items?: Array<{
+        __typename: "Comment";
+        id: string;
+        postID: string;
+        content: string;
+        creatorId?: string | null;
+        creatorName?: string | null;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
       nextToken?: string | null;
     } | null;
     createdAt: string;
@@ -332,6 +397,16 @@ export type DeleteCommentMutation = {
     creatorName?: string | null;
     comments?: {
       __typename: "ModelCommentConnection";
+      items?: Array<{
+        __typename: "Comment";
+        id: string;
+        postID: string;
+        content: string;
+        creatorId?: string | null;
+        creatorName?: string | null;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
       nextToken?: string | null;
     } | null;
     createdAt: string;
@@ -357,6 +432,16 @@ export type GetPostQuery = {
       content: string;
       creatorId?: string | null;
       creatorName?: string | null;
+      post?: {
+        __typename: "Post";
+        id: string;
+        title: string;
+        content?: string | null;
+        creatorId?: string | null;
+        creatorName?: string | null;
+        createdAt: string;
+        updatedAt: string;
+      } | null;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
@@ -377,6 +462,16 @@ export type ListPostsQuery = {
     creatorName?: string | null;
     comments?: {
       __typename: "ModelCommentConnection";
+      items?: Array<{
+        __typename: "Comment";
+        id: string;
+        postID: string;
+        content: string;
+        creatorId?: string | null;
+        creatorName?: string | null;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
       nextToken?: string | null;
     } | null;
     createdAt: string;
@@ -401,6 +496,16 @@ export type GetCommentQuery = {
     creatorName?: string | null;
     comments?: {
       __typename: "ModelCommentConnection";
+      items?: Array<{
+        __typename: "Comment";
+        id: string;
+        postID: string;
+        content: string;
+        creatorId?: string | null;
+        creatorName?: string | null;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
       nextToken?: string | null;
     } | null;
     createdAt: string;
@@ -426,6 +531,68 @@ export type ListCommentsQuery = {
       content?: string | null;
       creatorId?: string | null;
       creatorName?: string | null;
+      comments?: {
+        __typename: "ModelCommentConnection";
+        nextToken?: string | null;
+      } | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  nextToken?: string | null;
+};
+
+export type ListByPostIdsQuery = {
+  __typename: "ModelPostConnection";
+  items?: Array<{
+    __typename: "Post";
+    id: string;
+    title: string;
+    content?: string | null;
+    creatorId?: string | null;
+    creatorName?: string | null;
+    comments?: {
+      __typename: "ModelCommentConnection";
+      items?: Array<{
+        __typename: "Comment";
+        id: string;
+        postID: string;
+        content: string;
+        creatorId?: string | null;
+        creatorName?: string | null;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken?: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  nextToken?: string | null;
+};
+
+export type ListByPostCommentsQuery = {
+  __typename: "ModelCommentConnection";
+  items?: Array<{
+    __typename: "Comment";
+    id: string;
+    postID: string;
+    content: string;
+    creatorId?: string | null;
+    creatorName?: string | null;
+    post?: {
+      __typename: "Post";
+      id: string;
+      title: string;
+      content?: string | null;
+      creatorId?: string | null;
+      creatorName?: string | null;
+      comments?: {
+        __typename: "ModelCommentConnection";
+        nextToken?: string | null;
+      } | null;
       createdAt: string;
       updatedAt: string;
     } | null;
@@ -451,6 +618,16 @@ export type OnCreatePostSubscription = {
       content: string;
       creatorId?: string | null;
       creatorName?: string | null;
+      post?: {
+        __typename: "Post";
+        id: string;
+        title: string;
+        content?: string | null;
+        creatorId?: string | null;
+        creatorName?: string | null;
+        createdAt: string;
+        updatedAt: string;
+      } | null;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
@@ -476,6 +653,16 @@ export type OnUpdatePostSubscription = {
       content: string;
       creatorId?: string | null;
       creatorName?: string | null;
+      post?: {
+        __typename: "Post";
+        id: string;
+        title: string;
+        content?: string | null;
+        creatorId?: string | null;
+        creatorName?: string | null;
+        createdAt: string;
+        updatedAt: string;
+      } | null;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
@@ -501,6 +688,16 @@ export type OnDeletePostSubscription = {
       content: string;
       creatorId?: string | null;
       creatorName?: string | null;
+      post?: {
+        __typename: "Post";
+        id: string;
+        title: string;
+        content?: string | null;
+        creatorId?: string | null;
+        creatorName?: string | null;
+        createdAt: string;
+        updatedAt: string;
+      } | null;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
@@ -526,6 +723,16 @@ export type OnCreateCommentSubscription = {
     creatorName?: string | null;
     comments?: {
       __typename: "ModelCommentConnection";
+      items?: Array<{
+        __typename: "Comment";
+        id: string;
+        postID: string;
+        content: string;
+        creatorId?: string | null;
+        creatorName?: string | null;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
       nextToken?: string | null;
     } | null;
     createdAt: string;
@@ -551,6 +758,16 @@ export type OnUpdateCommentSubscription = {
     creatorName?: string | null;
     comments?: {
       __typename: "ModelCommentConnection";
+      items?: Array<{
+        __typename: "Comment";
+        id: string;
+        postID: string;
+        content: string;
+        creatorId?: string | null;
+        creatorName?: string | null;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
       nextToken?: string | null;
     } | null;
     createdAt: string;
@@ -576,6 +793,16 @@ export type OnDeleteCommentSubscription = {
     creatorName?: string | null;
     comments?: {
       __typename: "ModelCommentConnection";
+      items?: Array<{
+        __typename: "Comment";
+        id: string;
+        postID: string;
+        content: string;
+        creatorId?: string | null;
+        creatorName?: string | null;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
       nextToken?: string | null;
     } | null;
     createdAt: string;
@@ -610,6 +837,16 @@ export class APIService {
               content
               creatorId
               creatorName
+              post {
+                __typename
+                id
+                title
+                content
+                creatorId
+                creatorName
+                createdAt
+                updatedAt
+              }
               createdAt
               updatedAt
             }
@@ -651,6 +888,16 @@ export class APIService {
               content
               creatorId
               creatorName
+              post {
+                __typename
+                id
+                title
+                content
+                creatorId
+                creatorName
+                createdAt
+                updatedAt
+              }
               createdAt
               updatedAt
             }
@@ -692,6 +939,16 @@ export class APIService {
               content
               creatorId
               creatorName
+              post {
+                __typename
+                id
+                title
+                content
+                creatorId
+                creatorName
+                createdAt
+                updatedAt
+              }
               createdAt
               updatedAt
             }
@@ -733,6 +990,16 @@ export class APIService {
             creatorName
             comments {
               __typename
+              items {
+                __typename
+                id
+                postID
+                content
+                creatorId
+                creatorName
+                createdAt
+                updatedAt
+              }
               nextToken
             }
             createdAt
@@ -774,6 +1041,16 @@ export class APIService {
             creatorName
             comments {
               __typename
+              items {
+                __typename
+                id
+                postID
+                content
+                creatorId
+                creatorName
+                createdAt
+                updatedAt
+              }
               nextToken
             }
             createdAt
@@ -815,6 +1092,16 @@ export class APIService {
             creatorName
             comments {
               __typename
+              items {
+                __typename
+                id
+                postID
+                content
+                creatorId
+                creatorName
+                createdAt
+                updatedAt
+              }
               nextToken
             }
             createdAt
@@ -853,6 +1140,16 @@ export class APIService {
               content
               creatorId
               creatorName
+              post {
+                __typename
+                id
+                title
+                content
+                creatorId
+                creatorName
+                createdAt
+                updatedAt
+              }
               createdAt
               updatedAt
             }
@@ -887,6 +1184,16 @@ export class APIService {
             creatorName
             comments {
               __typename
+              items {
+                __typename
+                id
+                postID
+                content
+                creatorId
+                creatorName
+                createdAt
+                updatedAt
+              }
               nextToken
             }
             createdAt
@@ -928,6 +1235,16 @@ export class APIService {
             creatorName
             comments {
               __typename
+              items {
+                __typename
+                id
+                postID
+                content
+                creatorId
+                creatorName
+                createdAt
+                updatedAt
+              }
               nextToken
             }
             createdAt
@@ -967,6 +1284,10 @@ export class APIService {
               content
               creatorId
               creatorName
+              comments {
+                __typename
+                nextToken
+              }
               createdAt
               updatedAt
             }
@@ -991,6 +1312,126 @@ export class APIService {
     )) as any;
     return <ListCommentsQuery>response.data.listComments;
   }
+  async ListByPostIds(
+    id?: string,
+    sortDirection?: ModelSortDirection,
+    filter?: ModelPostFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListByPostIdsQuery> {
+    const statement = `query ListByPostIds($id: ID, $sortDirection: ModelSortDirection, $filter: ModelPostFilterInput, $limit: Int, $nextToken: String) {
+        listByPostIds(id: $id, sortDirection: $sortDirection, filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            title
+            content
+            creatorId
+            creatorName
+            comments {
+              __typename
+              items {
+                __typename
+                id
+                postID
+                content
+                creatorId
+                creatorName
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (id) {
+      gqlAPIServiceArguments.id = id;
+    }
+    if (sortDirection) {
+      gqlAPIServiceArguments.sortDirection = sortDirection;
+    }
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListByPostIdsQuery>response.data.listByPostIds;
+  }
+  async ListByPostComments(
+    postID?: string,
+    content?: ModelStringKeyConditionInput,
+    sortDirection?: ModelSortDirection,
+    filter?: ModelCommentFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListByPostCommentsQuery> {
+    const statement = `query ListByPostComments($postID: ID, $content: ModelStringKeyConditionInput, $sortDirection: ModelSortDirection, $filter: ModelCommentFilterInput, $limit: Int, $nextToken: String) {
+        listByPostComments(postID: $postID, content: $content, sortDirection: $sortDirection, filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            postID
+            content
+            creatorId
+            creatorName
+            post {
+              __typename
+              id
+              title
+              content
+              creatorId
+              creatorName
+              comments {
+                __typename
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (postID) {
+      gqlAPIServiceArguments.postID = postID;
+    }
+    if (content) {
+      gqlAPIServiceArguments.content = content;
+    }
+    if (sortDirection) {
+      gqlAPIServiceArguments.sortDirection = sortDirection;
+    }
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListByPostCommentsQuery>response.data.listByPostComments;
+  }
   OnCreatePostListener: Observable<
     SubscriptionResponse<Pick<__SubscriptionContainer, "onCreatePost">>
   > = API.graphql(
@@ -1012,6 +1453,16 @@ export class APIService {
               content
               creatorId
               creatorName
+              post {
+                __typename
+                id
+                title
+                content
+                creatorId
+                creatorName
+                createdAt
+                updatedAt
+              }
               createdAt
               updatedAt
             }
@@ -1047,6 +1498,16 @@ export class APIService {
               content
               creatorId
               creatorName
+              post {
+                __typename
+                id
+                title
+                content
+                creatorId
+                creatorName
+                createdAt
+                updatedAt
+              }
               createdAt
               updatedAt
             }
@@ -1082,6 +1543,16 @@ export class APIService {
               content
               creatorId
               creatorName
+              post {
+                __typename
+                id
+                title
+                content
+                creatorId
+                creatorName
+                createdAt
+                updatedAt
+              }
               createdAt
               updatedAt
             }
@@ -1117,6 +1588,16 @@ export class APIService {
             creatorName
             comments {
               __typename
+              items {
+                __typename
+                id
+                postID
+                content
+                creatorId
+                creatorName
+                createdAt
+                updatedAt
+              }
               nextToken
             }
             createdAt
@@ -1152,6 +1633,16 @@ export class APIService {
             creatorName
             comments {
               __typename
+              items {
+                __typename
+                id
+                postID
+                content
+                creatorId
+                creatorName
+                createdAt
+                updatedAt
+              }
               nextToken
             }
             createdAt
@@ -1187,6 +1678,16 @@ export class APIService {
             creatorName
             comments {
               __typename
+              items {
+                __typename
+                id
+                postID
+                content
+                creatorId
+                creatorName
+                createdAt
+                updatedAt
+              }
               nextToken
             }
             createdAt

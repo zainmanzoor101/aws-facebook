@@ -1,5 +1,5 @@
 .custom-card {
-    background-color: lightgray;
+    background-color: white;
     margin-top: 10px;
     padding: 2px;
     border-radius:10px;
@@ -84,8 +84,36 @@
 }
 
 .user-logo{
-    height: 15%;
-    width: 10%;
+    height: 13%;
+    width: 8%;
     border-radius:45%;
     display:inline-block;
+    margin-bottom: 5px;
+}
+
+.like-comment{
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+
+.like-comment-wrap{
+    margin: 1% 1% 1% 1%;
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.like-comment-wrap button{
+    font-size: 15px;
+}
+
+.post-wrap{
+    height: 80%;
+    width: 100%;
+}
+
+.card-text{
+    padding: 5px;
 }

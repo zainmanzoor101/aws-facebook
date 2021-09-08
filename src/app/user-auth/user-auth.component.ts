@@ -12,7 +12,7 @@ export class UserAuthComponent implements OnInit {
 
     user?: CognitoUserInterface | undefined;
     authState!: AuthState;
-
+    isAuthenticated?: boolean=false;
     constructor(private ref: ChangeDetectorRef, private router: Router) { }
 
     ngOnInit(): void {
@@ -23,6 +23,7 @@ export class UserAuthComponent implements OnInit {
             console.log("User Logged In: ", this.user);
             console.log("User Auth State: ", this.authState);
             if(this.authState === 'signedin'){
+                this.isAuthenticated=true;
                 this.router.navigate(['home']);
             } else {
                 this.router.navigate(['login']);
