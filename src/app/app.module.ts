@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './app.routes';
 import { AppComponent } from './app.component';
 import { PostsComponent } from './posts/posts.component';
 import { AddEditPostComponent } from './add-edit-post/add-edit-post.component';

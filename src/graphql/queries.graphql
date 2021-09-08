@@ -19,6 +19,8 @@ query GetPost($id: ID!) {
           content
           creatorId
           creatorName
+          noOfLikes
+          noOfComments
           createdAt
           updatedAt
         }
@@ -27,6 +29,8 @@ query GetPost($id: ID!) {
       }
       nextToken
     }
+    noOfLikes
+    noOfComments
     createdAt
     updatedAt
   }
@@ -55,6 +59,8 @@ query ListPosts(
         }
         nextToken
       }
+      noOfLikes
+      noOfComments
       createdAt
       updatedAt
     }
@@ -86,6 +92,8 @@ query GetComment($id: ID!) {
         }
         nextToken
       }
+      noOfLikes
+      noOfComments
       createdAt
       updatedAt
     }
@@ -114,6 +122,8 @@ query ListComments(
         comments {
           nextToken
         }
+        noOfLikes
+        noOfComments
         createdAt
         updatedAt
       }
@@ -155,6 +165,8 @@ query ListByPostIds(
         }
         nextToken
       }
+      noOfLikes
+      noOfComments
       createdAt
       updatedAt
     }
@@ -192,6 +204,8 @@ query ListByPostComments(
         comments {
           nextToken
         }
+        noOfLikes
+        noOfComments
         createdAt
         updatedAt
       }

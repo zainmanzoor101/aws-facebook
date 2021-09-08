@@ -24,6 +24,8 @@ export type CreatePostInput = {
   content?: string | null;
   creatorId?: string | null;
   creatorName?: string | null;
+  noOfLikes?: number | null;
+  noOfComments?: number | null;
 };
 
 export type ModelPostConditionInput = {
@@ -31,6 +33,8 @@ export type ModelPostConditionInput = {
   content?: ModelStringInput | null;
   creatorId?: ModelStringInput | null;
   creatorName?: ModelStringInput | null;
+  noOfLikes?: ModelIntInput | null;
+  noOfComments?: ModelIntInput | null;
   and?: Array<ModelPostConditionInput | null> | null;
   or?: Array<ModelPostConditionInput | null> | null;
   not?: ModelPostConditionInput | null;
@@ -75,6 +79,18 @@ export type ModelSizeInput = {
   between?: Array<number | null> | null;
 };
 
+export type ModelIntInput = {
+  ne?: number | null;
+  eq?: number | null;
+  le?: number | null;
+  lt?: number | null;
+  ge?: number | null;
+  gt?: number | null;
+  between?: Array<number | null> | null;
+  attributeExists?: boolean | null;
+  attributeType?: ModelAttributeTypes | null;
+};
+
 export type Post = {
   __typename: "Post";
   id: string;
@@ -83,6 +99,8 @@ export type Post = {
   creatorId?: string | null;
   creatorName?: string | null;
   comments?: ModelCommentConnection | null;
+  noOfLikes?: number | null;
+  noOfComments?: number | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -111,6 +129,8 @@ export type UpdatePostInput = {
   content?: string | null;
   creatorId?: string | null;
   creatorName?: string | null;
+  noOfLikes?: number | null;
+  noOfComments?: number | null;
 };
 
 export type DeletePostInput = {
@@ -169,6 +189,8 @@ export type ModelPostFilterInput = {
   content?: ModelStringInput | null;
   creatorId?: ModelStringInput | null;
   creatorName?: ModelStringInput | null;
+  noOfLikes?: ModelIntInput | null;
+  noOfComments?: ModelIntInput | null;
   and?: Array<ModelPostFilterInput | null> | null;
   or?: Array<ModelPostFilterInput | null> | null;
   not?: ModelPostFilterInput | null;
@@ -229,6 +251,8 @@ export type CreatePostMutation = {
         content?: string | null;
         creatorId?: string | null;
         creatorName?: string | null;
+        noOfLikes?: number | null;
+        noOfComments?: number | null;
         createdAt: string;
         updatedAt: string;
       } | null;
@@ -237,6 +261,8 @@ export type CreatePostMutation = {
     } | null> | null;
     nextToken?: string | null;
   } | null;
+  noOfLikes?: number | null;
+  noOfComments?: number | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -264,6 +290,8 @@ export type UpdatePostMutation = {
         content?: string | null;
         creatorId?: string | null;
         creatorName?: string | null;
+        noOfLikes?: number | null;
+        noOfComments?: number | null;
         createdAt: string;
         updatedAt: string;
       } | null;
@@ -272,6 +300,8 @@ export type UpdatePostMutation = {
     } | null> | null;
     nextToken?: string | null;
   } | null;
+  noOfLikes?: number | null;
+  noOfComments?: number | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -299,6 +329,8 @@ export type DeletePostMutation = {
         content?: string | null;
         creatorId?: string | null;
         creatorName?: string | null;
+        noOfLikes?: number | null;
+        noOfComments?: number | null;
         createdAt: string;
         updatedAt: string;
       } | null;
@@ -307,6 +339,8 @@ export type DeletePostMutation = {
     } | null> | null;
     nextToken?: string | null;
   } | null;
+  noOfLikes?: number | null;
+  noOfComments?: number | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -339,6 +373,8 @@ export type CreateCommentMutation = {
       } | null> | null;
       nextToken?: string | null;
     } | null;
+    noOfLikes?: number | null;
+    noOfComments?: number | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -374,6 +410,8 @@ export type UpdateCommentMutation = {
       } | null> | null;
       nextToken?: string | null;
     } | null;
+    noOfLikes?: number | null;
+    noOfComments?: number | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -409,6 +447,8 @@ export type DeleteCommentMutation = {
       } | null> | null;
       nextToken?: string | null;
     } | null;
+    noOfLikes?: number | null;
+    noOfComments?: number | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -439,6 +479,8 @@ export type GetPostQuery = {
         content?: string | null;
         creatorId?: string | null;
         creatorName?: string | null;
+        noOfLikes?: number | null;
+        noOfComments?: number | null;
         createdAt: string;
         updatedAt: string;
       } | null;
@@ -447,6 +489,8 @@ export type GetPostQuery = {
     } | null> | null;
     nextToken?: string | null;
   } | null;
+  noOfLikes?: number | null;
+  noOfComments?: number | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -474,6 +518,8 @@ export type ListPostsQuery = {
       } | null> | null;
       nextToken?: string | null;
     } | null;
+    noOfLikes?: number | null;
+    noOfComments?: number | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -508,6 +554,8 @@ export type GetCommentQuery = {
       } | null> | null;
       nextToken?: string | null;
     } | null;
+    noOfLikes?: number | null;
+    noOfComments?: number | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -535,6 +583,8 @@ export type ListCommentsQuery = {
         __typename: "ModelCommentConnection";
         nextToken?: string | null;
       } | null;
+      noOfLikes?: number | null;
+      noOfComments?: number | null;
       createdAt: string;
       updatedAt: string;
     } | null;
@@ -567,6 +617,8 @@ export type ListByPostIdsQuery = {
       } | null> | null;
       nextToken?: string | null;
     } | null;
+    noOfLikes?: number | null;
+    noOfComments?: number | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -593,6 +645,8 @@ export type ListByPostCommentsQuery = {
         __typename: "ModelCommentConnection";
         nextToken?: string | null;
       } | null;
+      noOfLikes?: number | null;
+      noOfComments?: number | null;
       createdAt: string;
       updatedAt: string;
     } | null;
@@ -625,6 +679,8 @@ export type OnCreatePostSubscription = {
         content?: string | null;
         creatorId?: string | null;
         creatorName?: string | null;
+        noOfLikes?: number | null;
+        noOfComments?: number | null;
         createdAt: string;
         updatedAt: string;
       } | null;
@@ -633,6 +689,8 @@ export type OnCreatePostSubscription = {
     } | null> | null;
     nextToken?: string | null;
   } | null;
+  noOfLikes?: number | null;
+  noOfComments?: number | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -660,6 +718,8 @@ export type OnUpdatePostSubscription = {
         content?: string | null;
         creatorId?: string | null;
         creatorName?: string | null;
+        noOfLikes?: number | null;
+        noOfComments?: number | null;
         createdAt: string;
         updatedAt: string;
       } | null;
@@ -668,6 +728,8 @@ export type OnUpdatePostSubscription = {
     } | null> | null;
     nextToken?: string | null;
   } | null;
+  noOfLikes?: number | null;
+  noOfComments?: number | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -695,6 +757,8 @@ export type OnDeletePostSubscription = {
         content?: string | null;
         creatorId?: string | null;
         creatorName?: string | null;
+        noOfLikes?: number | null;
+        noOfComments?: number | null;
         createdAt: string;
         updatedAt: string;
       } | null;
@@ -703,6 +767,8 @@ export type OnDeletePostSubscription = {
     } | null> | null;
     nextToken?: string | null;
   } | null;
+  noOfLikes?: number | null;
+  noOfComments?: number | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -735,6 +801,8 @@ export type OnCreateCommentSubscription = {
       } | null> | null;
       nextToken?: string | null;
     } | null;
+    noOfLikes?: number | null;
+    noOfComments?: number | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -770,6 +838,8 @@ export type OnUpdateCommentSubscription = {
       } | null> | null;
       nextToken?: string | null;
     } | null;
+    noOfLikes?: number | null;
+    noOfComments?: number | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -805,6 +875,8 @@ export type OnDeleteCommentSubscription = {
       } | null> | null;
       nextToken?: string | null;
     } | null;
+    noOfLikes?: number | null;
+    noOfComments?: number | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -844,6 +916,8 @@ export class APIService {
                 content
                 creatorId
                 creatorName
+                noOfLikes
+                noOfComments
                 createdAt
                 updatedAt
               }
@@ -852,6 +926,8 @@ export class APIService {
             }
             nextToken
           }
+          noOfLikes
+          noOfComments
           createdAt
           updatedAt
         }
@@ -895,6 +971,8 @@ export class APIService {
                 content
                 creatorId
                 creatorName
+                noOfLikes
+                noOfComments
                 createdAt
                 updatedAt
               }
@@ -903,6 +981,8 @@ export class APIService {
             }
             nextToken
           }
+          noOfLikes
+          noOfComments
           createdAt
           updatedAt
         }
@@ -946,6 +1026,8 @@ export class APIService {
                 content
                 creatorId
                 creatorName
+                noOfLikes
+                noOfComments
                 createdAt
                 updatedAt
               }
@@ -954,6 +1036,8 @@ export class APIService {
             }
             nextToken
           }
+          noOfLikes
+          noOfComments
           createdAt
           updatedAt
         }
@@ -1002,6 +1086,8 @@ export class APIService {
               }
               nextToken
             }
+            noOfLikes
+            noOfComments
             createdAt
             updatedAt
           }
@@ -1053,6 +1139,8 @@ export class APIService {
               }
               nextToken
             }
+            noOfLikes
+            noOfComments
             createdAt
             updatedAt
           }
@@ -1104,6 +1192,8 @@ export class APIService {
               }
               nextToken
             }
+            noOfLikes
+            noOfComments
             createdAt
             updatedAt
           }
@@ -1147,6 +1237,8 @@ export class APIService {
                 content
                 creatorId
                 creatorName
+                noOfLikes
+                noOfComments
                 createdAt
                 updatedAt
               }
@@ -1155,6 +1247,8 @@ export class APIService {
             }
             nextToken
           }
+          noOfLikes
+          noOfComments
           createdAt
           updatedAt
         }
@@ -1196,6 +1290,8 @@ export class APIService {
               }
               nextToken
             }
+            noOfLikes
+            noOfComments
             createdAt
             updatedAt
           }
@@ -1247,6 +1343,8 @@ export class APIService {
               }
               nextToken
             }
+            noOfLikes
+            noOfComments
             createdAt
             updatedAt
           }
@@ -1288,6 +1386,8 @@ export class APIService {
                 __typename
                 nextToken
               }
+              noOfLikes
+              noOfComments
               createdAt
               updatedAt
             }
@@ -1343,6 +1443,8 @@ export class APIService {
               }
               nextToken
             }
+            noOfLikes
+            noOfComments
             createdAt
             updatedAt
           }
@@ -1399,6 +1501,8 @@ export class APIService {
                 __typename
                 nextToken
               }
+              noOfLikes
+              noOfComments
               createdAt
               updatedAt
             }
@@ -1460,6 +1564,8 @@ export class APIService {
                 content
                 creatorId
                 creatorName
+                noOfLikes
+                noOfComments
                 createdAt
                 updatedAt
               }
@@ -1468,6 +1574,8 @@ export class APIService {
             }
             nextToken
           }
+          noOfLikes
+          noOfComments
           createdAt
           updatedAt
         }
@@ -1505,6 +1613,8 @@ export class APIService {
                 content
                 creatorId
                 creatorName
+                noOfLikes
+                noOfComments
                 createdAt
                 updatedAt
               }
@@ -1513,6 +1623,8 @@ export class APIService {
             }
             nextToken
           }
+          noOfLikes
+          noOfComments
           createdAt
           updatedAt
         }
@@ -1550,6 +1662,8 @@ export class APIService {
                 content
                 creatorId
                 creatorName
+                noOfLikes
+                noOfComments
                 createdAt
                 updatedAt
               }
@@ -1558,6 +1672,8 @@ export class APIService {
             }
             nextToken
           }
+          noOfLikes
+          noOfComments
           createdAt
           updatedAt
         }
@@ -1600,6 +1716,8 @@ export class APIService {
               }
               nextToken
             }
+            noOfLikes
+            noOfComments
             createdAt
             updatedAt
           }
@@ -1645,6 +1763,8 @@ export class APIService {
               }
               nextToken
             }
+            noOfLikes
+            noOfComments
             createdAt
             updatedAt
           }
@@ -1690,6 +1810,8 @@ export class APIService {
               }
               nextToken
             }
+            noOfLikes
+            noOfComments
             createdAt
             updatedAt
           }

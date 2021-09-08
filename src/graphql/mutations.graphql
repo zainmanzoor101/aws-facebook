@@ -22,6 +22,8 @@ mutation CreatePost(
           content
           creatorId
           creatorName
+          noOfLikes
+          noOfComments
           createdAt
           updatedAt
         }
@@ -30,6 +32,8 @@ mutation CreatePost(
       }
       nextToken
     }
+    noOfLikes
+    noOfComments
     createdAt
     updatedAt
   }
@@ -57,6 +61,8 @@ mutation UpdatePost(
           content
           creatorId
           creatorName
+          noOfLikes
+          noOfComments
           createdAt
           updatedAt
         }
@@ -65,6 +71,8 @@ mutation UpdatePost(
       }
       nextToken
     }
+    noOfLikes
+    noOfComments
     createdAt
     updatedAt
   }
@@ -92,6 +100,8 @@ mutation DeletePost(
           content
           creatorId
           creatorName
+          noOfLikes
+          noOfComments
           createdAt
           updatedAt
         }
@@ -100,6 +110,8 @@ mutation DeletePost(
       }
       nextToken
     }
+    noOfLikes
+    noOfComments
     createdAt
     updatedAt
   }
@@ -132,6 +144,8 @@ mutation CreateComment(
         }
         nextToken
       }
+      noOfLikes
+      noOfComments
       createdAt
       updatedAt
     }
@@ -167,6 +181,8 @@ mutation UpdateComment(
         }
         nextToken
       }
+      noOfLikes
+      noOfComments
       createdAt
       updatedAt
     }
@@ -202,6 +218,8 @@ mutation DeleteComment(
         }
         nextToken
       }
+      noOfLikes
+      noOfComments
       createdAt
       updatedAt
     }

@@ -7,12 +7,13 @@ import { APIService, CreateCommentInput, Post, UpdatePostInput } from '../API.se
 import { Auth } from 'aws-amplify';
 import { NgxSpinnerService } from 'ngx-bootstrap-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { OnChanges } from '@angular/core';
 @Component({
     selector: 'app-posts',
     templateUrl: './posts.component.html',
     styleUrls: ['./posts.component.css']
 })
-export class PostsComponent implements OnInit {
+export class PostsComponent implements OnInit,OnChanges {
     
     posts!: Array<Post>;
     commentForm!: FormGroup;
@@ -25,7 +26,7 @@ export class PostsComponent implements OnInit {
         private spinner: NgxSpinnerService) { }
 
     ngOnInit(): void {
-
+        console.log('Post is loaded ');
 
         //Getting the current user:
         this.getCurrentUser();
@@ -41,6 +42,10 @@ export class PostsComponent implements OnInit {
         this.api.OnCreatePostListener.subscribe((res: any) => {
             this.posts = [res.value.data.onCreatePost, ...this.posts];
         })
+    }
+
+    ngOnChanges(changes: any):void{
+        console.log(changes);
     }
 
     // Initializing the form
@@ -62,6 +67,7 @@ export class PostsComponent implements OnInit {
 
     // Getting the list of posts.
     getAllPosts() {
+        console.log('Getting the list of posts');
         this.spinner.show();
         this.api.ListPosts().then((res: any) => {
             this.posts = res.items;

@@ -13,7 +13,9 @@ export class UserAuthComponent implements OnInit {
     user?: CognitoUserInterface | undefined;
     authState!: AuthState;
     isAuthenticated?: boolean=false;
-    constructor(private ref: ChangeDetectorRef, private router: Router) { }
+    constructor(private ref: ChangeDetectorRef, private router: Router) { 
+        // this.router.routeReuseStrategy = () => false;
+    }
 
     ngOnInit(): void {
 
@@ -22,6 +24,7 @@ export class UserAuthComponent implements OnInit {
             this.user = authData as CognitoUserInterface;
             console.log("User Logged In: ", this.user);
             console.log("User Auth State: ", this.authState);
+            debugger;
             if(this.authState === 'signedin'){
                 this.isAuthenticated=true;
                 this.router.navigate(['home']);

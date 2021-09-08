@@ -19,6 +19,8 @@ subscription OnCreatePost {
           content
           creatorId
           creatorName
+          noOfLikes
+          noOfComments
           createdAt
           updatedAt
         }
@@ -27,6 +29,8 @@ subscription OnCreatePost {
       }
       nextToken
     }
+    noOfLikes
+    noOfComments
     createdAt
     updatedAt
   }
@@ -51,6 +55,8 @@ subscription OnUpdatePost {
           content
           creatorId
           creatorName
+          noOfLikes
+          noOfComments
           createdAt
           updatedAt
         }
@@ -59,6 +65,8 @@ subscription OnUpdatePost {
       }
       nextToken
     }
+    noOfLikes
+    noOfComments
     createdAt
     updatedAt
   }
@@ -83,6 +91,8 @@ subscription OnDeletePost {
           content
           creatorId
           creatorName
+          noOfLikes
+          noOfComments
           createdAt
           updatedAt
         }
@@ -91,6 +101,8 @@ subscription OnDeletePost {
       }
       nextToken
     }
+    noOfLikes
+    noOfComments
     createdAt
     updatedAt
   }
@@ -120,6 +132,8 @@ subscription OnCreateComment {
         }
         nextToken
       }
+      noOfLikes
+      noOfComments
       createdAt
       updatedAt
     }
@@ -152,6 +166,8 @@ subscription OnUpdateComment {
         }
         nextToken
       }
+      noOfLikes
+      noOfComments
       createdAt
       updatedAt
     }
@@ -184,6 +200,8 @@ subscription OnDeleteComment {
         }
         nextToken
       }
+      noOfLikes
+      noOfComments
       createdAt
       updatedAt
     }

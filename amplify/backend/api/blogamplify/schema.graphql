@@ -1,16 +1,23 @@
-type Post @model 
-@key(name: "byPostId", fields: ["id"], queryField: "listByPostIds")
-{
+type Post
+  @model
+  @key(name: "byPostId", fields: ["id"], queryField: "listByPostIds") {
   id: ID!
   title: String!
   content: String
   creatorId: String
   creatorName: String
-  comments: [Comment] @connection(keyName: "byPost", fields: ["id"], limit: 1000)
+  comments: [Comment]   @connection(keyName: "byPost", fields: ["id"], limit: 1000)
+  noOfLikes: Int    @function(name: "getLikesOfPost")
+  noOfComments: Int
 }
 
-type Comment @model 
-  @key(name: "byPost", fields: ["postID", "content"], queryField: "listByPostComments") {
+type Comment
+  @model
+  @key(
+    name: "byPost"
+    fields: ["postID", "content"]
+    queryField: "listByPostComments"
+  ) {
   id: ID!
   postID: ID!
   content: String!
@@ -18,4 +25,3 @@ type Comment @model
   creatorName: String
   post: Post @connection(fields: ["postID"])
 }
-
