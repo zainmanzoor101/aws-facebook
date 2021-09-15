@@ -1,4 +1,40 @@
 # this is an auto generated file. This will be overwritten
+subscription OnAddNewLike($postId: ID!) {
+  onAddNewLike(postId: $postId) {
+    id
+    title
+    content
+    creatorId
+    creatorName
+    comments {
+      items {
+        id
+        postID
+        content
+        creatorName
+        creatorId
+        post {
+          id
+          title
+          content
+          creatorId
+          creatorName
+          noOfLikes
+          noOfComments
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    noOfLikes
+    noOfComments
+    createdAt
+    updatedAt
+  }
+}
 subscription OnCreatePost {
   onCreatePost {
     id
@@ -11,8 +47,8 @@ subscription OnCreatePost {
         id
         postID
         content
-        creatorId
         creatorName
+        creatorId
         post {
           id
           title
@@ -47,8 +83,8 @@ subscription OnUpdatePost {
         id
         postID
         content
-        creatorId
         creatorName
+        creatorId
         post {
           id
           title
@@ -83,8 +119,8 @@ subscription OnDeletePost {
         id
         postID
         content
-        creatorId
         creatorName
+        creatorId
         post {
           id
           title
@@ -112,8 +148,8 @@ subscription OnCreateComment {
     id
     postID
     content
-    creatorId
     creatorName
+    creatorId
     post {
       id
       title
@@ -125,8 +161,8 @@ subscription OnCreateComment {
           id
           postID
           content
-          creatorId
           creatorName
+          creatorId
           createdAt
           updatedAt
         }
@@ -146,8 +182,8 @@ subscription OnUpdateComment {
     id
     postID
     content
-    creatorId
     creatorName
+    creatorId
     post {
       id
       title
@@ -159,8 +195,8 @@ subscription OnUpdateComment {
           id
           postID
           content
-          creatorId
           creatorName
+          creatorId
           createdAt
           updatedAt
         }
@@ -180,8 +216,8 @@ subscription OnDeleteComment {
     id
     postID
     content
-    creatorId
     creatorName
+    creatorId
     post {
       id
       title
@@ -193,8 +229,8 @@ subscription OnDeleteComment {
           id
           postID
           content
-          creatorId
           creatorName
+          creatorId
           createdAt
           updatedAt
         }

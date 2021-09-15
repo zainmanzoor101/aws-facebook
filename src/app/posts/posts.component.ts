@@ -1,7 +1,6 @@
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { isJSDocThisTag } from 'typescript';
 import { AddEditPostComponent } from '../add-edit-post/add-edit-post.component';
 import { APIService, CreateCommentInput, Post, UpdatePostInput } from '../API.service';
 import { Auth } from 'aws-amplify';
@@ -91,6 +90,8 @@ export class PostsComponent implements OnInit,OnChanges {
                 this.spinner.show();
                 post.creatorId = this.currentUser.attributes.sub;
                 post.creatorName = this.currentUser.username;
+                post.noOfComments = 0;
+                post.noOfLikes = 0;
                 this.api.CreatePost(post).then((res: any) => {
                     console.log("Post is created: ", res);
                     this.spinner.hide();

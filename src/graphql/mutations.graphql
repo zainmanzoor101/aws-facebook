@@ -14,8 +14,8 @@ mutation CreatePost(
         id
         postID
         content
-        creatorId
         creatorName
+        creatorId
         post {
           id
           title
@@ -53,8 +53,8 @@ mutation UpdatePost(
         id
         postID
         content
-        creatorId
         creatorName
+        creatorId
         post {
           id
           title
@@ -92,8 +92,8 @@ mutation DeletePost(
         id
         postID
         content
-        creatorId
         creatorName
+        creatorId
         post {
           id
           title
@@ -124,8 +124,8 @@ mutation CreateComment(
     id
     postID
     content
-    creatorId
     creatorName
+    creatorId
     post {
       id
       title
@@ -137,8 +137,8 @@ mutation CreateComment(
           id
           postID
           content
-          creatorId
           creatorName
+          creatorId
           createdAt
           updatedAt
         }
@@ -161,8 +161,8 @@ mutation UpdateComment(
     id
     postID
     content
-    creatorId
     creatorName
+    creatorId
     post {
       id
       title
@@ -174,8 +174,8 @@ mutation UpdateComment(
           id
           postID
           content
-          creatorId
           creatorName
+          creatorId
           createdAt
           updatedAt
         }
@@ -198,8 +198,8 @@ mutation DeleteComment(
     id
     postID
     content
-    creatorId
     creatorName
+    creatorId
     post {
       id
       title
@@ -211,8 +211,8 @@ mutation DeleteComment(
           id
           postID
           content
-          creatorId
           creatorName
+          creatorId
           createdAt
           updatedAt
         }

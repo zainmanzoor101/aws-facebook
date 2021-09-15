@@ -1,0 +1,18 @@
+{
+  "lambdaLayers": [],
+  "permissions": {
+    "api": {
+      "blogamplify": [
+        "Query",
+        "Mutation",
+        "Subscription"
+      ]
+    },
+    "storage": {
+      "Comment:@model(appsync)": [
+        "create",
+        "update"
+      ]
+    }
+  }
+}

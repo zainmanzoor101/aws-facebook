@@ -1,27 +1,42 @@
 type Post
   @model
-  @key(name: "byPostId", fields: ["id"], queryField: "listByPostIds") {
+  @key(name: "byPostId", fields: ["id"], queryField: "listByPostIds")
+  @key(name: "totalLikes", fields: ["noOfLikes"], queryField: "totalLikes") {
   id: ID!
   title: String!
   content: String
   creatorId: String
   creatorName: String
-  comments: [Comment]   @connection(keyName: "byPost", fields: ["id"], limit: 1000)
-  noOfLikes: Int    @function(name: "getLikesOfPost")
+  comments: [Comment]
+    @connection(keyName: "byPost", fields: ["id"], limit: 1000)
+  noOfLikes: Int
   noOfComments: Int
 }
 
 type Comment
   @model
   @key(
-    name: "byPost"
+    name: "byPost" 
     fields: ["postID", "content"]
     queryField: "listByPostComments"
   ) {
   id: ID!
   postID: ID!
   content: String!
-  creatorId: String
   creatorName: String
+  creatorId: String
   post: Post @connection(fields: ["postID"])
+}
+
+type Subscription {
+  onAddNewLike(postId: ID!): Post @aws_subscribe(mutations: ["updatePost"])
+}
+
+type CommentConnection {
+    items: [Comment]
+    nextToken: String
+}
+
+type Query { 
+    commentsForPost(postId:ID!, limit: Int, nextToken: String): CommentConnection
 }

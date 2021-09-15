@@ -1,0 +1,13 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: my event bus that receives an event.
+Parameters:
+  env:
+    Type: String
+Resources:
+  MyEventBusN:
+    Type: AWS::Events::EventBus
+    Properties:
+      Name: "EventBus-Nouman"
+Outputs:
+  Name:
+    Value: !Ref MyEventBusN

@@ -19,6 +19,14 @@
         "mytrigger": {
           "deploymentBucketName": "amplify-blogamplify-dev-155310-deployment",
           "s3Key": "amplify-builds/mytrigger-3550542b4f3036706435-build.zip"
+        },
+        "likesUpdated": {
+          "deploymentBucketName": "amplify-blogamplify-dev-155310-deployment",
+          "s3Key": "amplify-builds/likesUpdated-496f635a68686a6f384e-build.zip"
+        },
+        "temp": {
+          "deploymentBucketName": "amplify-blogamplify-dev-155310-deployment",
+          "s3Key": "amplify-builds/temp-7a5078693449626b6f43-build.zip"
         }
       }
     }

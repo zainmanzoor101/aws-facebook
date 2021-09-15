@@ -1,0 +1,51 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: my eventbridge rule to invoke a lambda.
+Parameters:
+  env:
+    Type: String
+  eventBusEventBusNName:
+    Type: String
+  functionmytriggerName:
+    Type: String
+  functionmytriggerArn:
+    Type: String
+Resources:
+  StatesExecutionRoleN:
+      Type: "AWS::IAM::Role"
+      Properties:
+        AssumeRolePolicyDocument:
+          Version: "2012-10-17"
+          Statement:
+            - Effect: "Allow"
+              Principal:
+                Service:
+                  - "lambda.amazonaws.com"
+                  - "events.amazonaws.com"
+              Action: "sts:AssumeRole"
+        Path: "/"
+        Policies:
+          - PolicyName: StatesExecutionPolicyN
+            PolicyDocument:
+              Version: "2012-10-17"
+              Statement:
+                - Effect: Allow
+                  Action:
+                    - "lambda:InvokeFunction"
+                  Resource: "*"
+  MyEventBridgeRuleN:
+    Type: AWS::Events::Rule
+    Properties:
+      Description: my event rule to invoke a lambda
+      EventBusName: !Ref eventBusEventBusNName
+      Name: EventBridgeRule-N
+      EventPattern:
+        source:
+          - custom.eventN
+      RoleArn: !GetAtt [ StatesExecutionRoleN, Arn ]
+      State: ENABLED
+      Targets:
+        - Arn: !Ref functionmytriggerArn
+          Id: !Join ["", [ MyEventBridgeRuleN, !Ref functionmytriggerName ]]
+Outputs:
+  Arn:
+    Value: !GetAtt [ MyEventBridgeRuleN, Arn]

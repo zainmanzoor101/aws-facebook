@@ -10,6 +10,7 @@ export interface SubscriptionResponse<T> {
 }
 
 export type __SubscriptionContainer = {
+  onAddNewLike: OnAddNewLikeSubscription;
   onCreatePost: OnCreatePostSubscription;
   onUpdatePost: OnUpdatePostSubscription;
   onDeletePost: OnDeletePostSubscription;
@@ -116,8 +117,8 @@ export type Comment = {
   id: string;
   postID: string;
   content: string;
-  creatorId?: string | null;
   creatorName?: string | null;
+  creatorId?: string | null;
   post?: Post | null;
   createdAt: string;
   updatedAt: string;
@@ -141,15 +142,15 @@ export type CreateCommentInput = {
   id?: string | null;
   postID: string;
   content: string;
-  creatorId?: string | null;
   creatorName?: string | null;
+  creatorId?: string | null;
 };
 
 export type ModelCommentConditionInput = {
   postID?: ModelIDInput | null;
   content?: ModelStringInput | null;
-  creatorId?: ModelStringInput | null;
   creatorName?: ModelStringInput | null;
+  creatorId?: ModelStringInput | null;
   and?: Array<ModelCommentConditionInput | null> | null;
   or?: Array<ModelCommentConditionInput | null> | null;
   not?: ModelCommentConditionInput | null;
@@ -175,12 +176,18 @@ export type UpdateCommentInput = {
   id: string;
   postID?: string | null;
   content?: string | null;
-  creatorId?: string | null;
   creatorName?: string | null;
+  creatorId?: string | null;
 };
 
 export type DeleteCommentInput = {
   id: string;
+};
+
+export type CommentConnection = {
+  __typename: "CommentConnection";
+  items?: Array<Comment | null> | null;
+  nextToken?: string | null;
 };
 
 export type ModelPostFilterInput = {
@@ -206,8 +213,8 @@ export type ModelCommentFilterInput = {
   id?: ModelIDInput | null;
   postID?: ModelIDInput | null;
   content?: ModelStringInput | null;
-  creatorId?: ModelStringInput | null;
   creatorName?: ModelStringInput | null;
+  creatorId?: ModelStringInput | null;
   and?: Array<ModelCommentFilterInput | null> | null;
   or?: Array<ModelCommentFilterInput | null> | null;
   not?: ModelCommentFilterInput | null;
@@ -242,8 +249,8 @@ export type CreatePostMutation = {
       id: string;
       postID: string;
       content: string;
-      creatorId?: string | null;
       creatorName?: string | null;
+      creatorId?: string | null;
       post?: {
         __typename: "Post";
         id: string;
@@ -281,8 +288,8 @@ export type UpdatePostMutation = {
       id: string;
       postID: string;
       content: string;
-      creatorId?: string | null;
       creatorName?: string | null;
+      creatorId?: string | null;
       post?: {
         __typename: "Post";
         id: string;
@@ -320,8 +327,8 @@ export type DeletePostMutation = {
       id: string;
       postID: string;
       content: string;
-      creatorId?: string | null;
       creatorName?: string | null;
+      creatorId?: string | null;
       post?: {
         __typename: "Post";
         id: string;
@@ -350,8 +357,8 @@ export type CreateCommentMutation = {
   id: string;
   postID: string;
   content: string;
-  creatorId?: string | null;
   creatorName?: string | null;
+  creatorId?: string | null;
   post?: {
     __typename: "Post";
     id: string;
@@ -366,8 +373,8 @@ export type CreateCommentMutation = {
         id: string;
         postID: string;
         content: string;
-        creatorId?: string | null;
         creatorName?: string | null;
+        creatorId?: string | null;
         createdAt: string;
         updatedAt: string;
       } | null> | null;
@@ -387,8 +394,8 @@ export type UpdateCommentMutation = {
   id: string;
   postID: string;
   content: string;
-  creatorId?: string | null;
   creatorName?: string | null;
+  creatorId?: string | null;
   post?: {
     __typename: "Post";
     id: string;
@@ -403,8 +410,8 @@ export type UpdateCommentMutation = {
         id: string;
         postID: string;
         content: string;
-        creatorId?: string | null;
         creatorName?: string | null;
+        creatorId?: string | null;
         createdAt: string;
         updatedAt: string;
       } | null> | null;
@@ -424,8 +431,8 @@ export type DeleteCommentMutation = {
   id: string;
   postID: string;
   content: string;
-  creatorId?: string | null;
   creatorName?: string | null;
+  creatorId?: string | null;
   post?: {
     __typename: "Post";
     id: string;
@@ -440,8 +447,8 @@ export type DeleteCommentMutation = {
         id: string;
         postID: string;
         content: string;
-        creatorId?: string | null;
         creatorName?: string | null;
+        creatorId?: string | null;
         createdAt: string;
         updatedAt: string;
       } | null> | null;
@@ -454,6 +461,37 @@ export type DeleteCommentMutation = {
   } | null;
   createdAt: string;
   updatedAt: string;
+};
+
+export type CommentsForPostQuery = {
+  __typename: "CommentConnection";
+  items?: Array<{
+    __typename: "Comment";
+    id: string;
+    postID: string;
+    content: string;
+    creatorName?: string | null;
+    creatorId?: string | null;
+    post?: {
+      __typename: "Post";
+      id: string;
+      title: string;
+      content?: string | null;
+      creatorId?: string | null;
+      creatorName?: string | null;
+      comments?: {
+        __typename: "ModelCommentConnection";
+        nextToken?: string | null;
+      } | null;
+      noOfLikes?: number | null;
+      noOfComments?: number | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  nextToken?: string | null;
 };
 
 export type GetPostQuery = {
@@ -470,8 +508,8 @@ export type GetPostQuery = {
       id: string;
       postID: string;
       content: string;
-      creatorId?: string | null;
       creatorName?: string | null;
+      creatorId?: string | null;
       post?: {
         __typename: "Post";
         id: string;
@@ -511,8 +549,8 @@ export type ListPostsQuery = {
         id: string;
         postID: string;
         content: string;
-        creatorId?: string | null;
         creatorName?: string | null;
+        creatorId?: string | null;
         createdAt: string;
         updatedAt: string;
       } | null> | null;
@@ -531,8 +569,8 @@ export type GetCommentQuery = {
   id: string;
   postID: string;
   content: string;
-  creatorId?: string | null;
   creatorName?: string | null;
+  creatorId?: string | null;
   post?: {
     __typename: "Post";
     id: string;
@@ -547,8 +585,8 @@ export type GetCommentQuery = {
         id: string;
         postID: string;
         content: string;
-        creatorId?: string | null;
         creatorName?: string | null;
+        creatorId?: string | null;
         createdAt: string;
         updatedAt: string;
       } | null> | null;
@@ -570,8 +608,8 @@ export type ListCommentsQuery = {
     id: string;
     postID: string;
     content: string;
-    creatorId?: string | null;
     creatorName?: string | null;
+    creatorId?: string | null;
     post?: {
       __typename: "Post";
       id: string;
@@ -610,8 +648,39 @@ export type ListByPostIdsQuery = {
         id: string;
         postID: string;
         content: string;
-        creatorId?: string | null;
         creatorName?: string | null;
+        creatorId?: string | null;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken?: string | null;
+    } | null;
+    noOfLikes?: number | null;
+    noOfComments?: number | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  nextToken?: string | null;
+};
+
+export type TotalLikesQuery = {
+  __typename: "ModelPostConnection";
+  items?: Array<{
+    __typename: "Post";
+    id: string;
+    title: string;
+    content?: string | null;
+    creatorId?: string | null;
+    creatorName?: string | null;
+    comments?: {
+      __typename: "ModelCommentConnection";
+      items?: Array<{
+        __typename: "Comment";
+        id: string;
+        postID: string;
+        content: string;
+        creatorName?: string | null;
+        creatorId?: string | null;
         createdAt: string;
         updatedAt: string;
       } | null> | null;
@@ -632,8 +701,8 @@ export type ListByPostCommentsQuery = {
     id: string;
     postID: string;
     content: string;
-    creatorId?: string | null;
     creatorName?: string | null;
+    creatorId?: string | null;
     post?: {
       __typename: "Post";
       id: string;
@@ -656,6 +725,45 @@ export type ListByPostCommentsQuery = {
   nextToken?: string | null;
 };
 
+export type OnAddNewLikeSubscription = {
+  __typename: "Post";
+  id: string;
+  title: string;
+  content?: string | null;
+  creatorId?: string | null;
+  creatorName?: string | null;
+  comments?: {
+    __typename: "ModelCommentConnection";
+    items?: Array<{
+      __typename: "Comment";
+      id: string;
+      postID: string;
+      content: string;
+      creatorName?: string | null;
+      creatorId?: string | null;
+      post?: {
+        __typename: "Post";
+        id: string;
+        title: string;
+        content?: string | null;
+        creatorId?: string | null;
+        creatorName?: string | null;
+        noOfLikes?: number | null;
+        noOfComments?: number | null;
+        createdAt: string;
+        updatedAt: string;
+      } | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken?: string | null;
+  } | null;
+  noOfLikes?: number | null;
+  noOfComments?: number | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
 export type OnCreatePostSubscription = {
   __typename: "Post";
   id: string;
@@ -670,8 +778,8 @@ export type OnCreatePostSubscription = {
       id: string;
       postID: string;
       content: string;
-      creatorId?: string | null;
       creatorName?: string | null;
+      creatorId?: string | null;
       post?: {
         __typename: "Post";
         id: string;
@@ -709,8 +817,8 @@ export type OnUpdatePostSubscription = {
       id: string;
       postID: string;
       content: string;
-      creatorId?: string | null;
       creatorName?: string | null;
+      creatorId?: string | null;
       post?: {
         __typename: "Post";
         id: string;
@@ -748,8 +856,8 @@ export type OnDeletePostSubscription = {
       id: string;
       postID: string;
       content: string;
-      creatorId?: string | null;
       creatorName?: string | null;
+      creatorId?: string | null;
       post?: {
         __typename: "Post";
         id: string;
@@ -778,8 +886,8 @@ export type OnCreateCommentSubscription = {
   id: string;
   postID: string;
   content: string;
-  creatorId?: string | null;
   creatorName?: string | null;
+  creatorId?: string | null;
   post?: {
     __typename: "Post";
     id: string;
@@ -794,8 +902,8 @@ export type OnCreateCommentSubscription = {
         id: string;
         postID: string;
         content: string;
-        creatorId?: string | null;
         creatorName?: string | null;
+        creatorId?: string | null;
         createdAt: string;
         updatedAt: string;
       } | null> | null;
@@ -815,8 +923,8 @@ export type OnUpdateCommentSubscription = {
   id: string;
   postID: string;
   content: string;
-  creatorId?: string | null;
   creatorName?: string | null;
+  creatorId?: string | null;
   post?: {
     __typename: "Post";
     id: string;
@@ -831,8 +939,8 @@ export type OnUpdateCommentSubscription = {
         id: string;
         postID: string;
         content: string;
-        creatorId?: string | null;
         creatorName?: string | null;
+        creatorId?: string | null;
         createdAt: string;
         updatedAt: string;
       } | null> | null;
@@ -852,8 +960,8 @@ export type OnDeleteCommentSubscription = {
   id: string;
   postID: string;
   content: string;
-  creatorId?: string | null;
   creatorName?: string | null;
+  creatorId?: string | null;
   post?: {
     __typename: "Post";
     id: string;
@@ -868,8 +976,8 @@ export type OnDeleteCommentSubscription = {
         id: string;
         postID: string;
         content: string;
-        creatorId?: string | null;
         creatorName?: string | null;
+        creatorId?: string | null;
         createdAt: string;
         updatedAt: string;
       } | null> | null;
@@ -907,8 +1015,8 @@ export class APIService {
               id
               postID
               content
-              creatorId
               creatorName
+              creatorId
               post {
                 __typename
                 id
@@ -962,8 +1070,8 @@ export class APIService {
               id
               postID
               content
-              creatorId
               creatorName
+              creatorId
               post {
                 __typename
                 id
@@ -1017,8 +1125,8 @@ export class APIService {
               id
               postID
               content
-              creatorId
               creatorName
+              creatorId
               post {
                 __typename
                 id
@@ -1063,8 +1171,8 @@ export class APIService {
           id
           postID
           content
-          creatorId
           creatorName
+          creatorId
           post {
             __typename
             id
@@ -1079,8 +1187,8 @@ export class APIService {
                 id
                 postID
                 content
-                creatorId
                 creatorName
+                creatorId
                 createdAt
                 updatedAt
               }
@@ -1116,8 +1224,8 @@ export class APIService {
           id
           postID
           content
-          creatorId
           creatorName
+          creatorId
           post {
             __typename
             id
@@ -1132,8 +1240,8 @@ export class APIService {
                 id
                 postID
                 content
-                creatorId
                 creatorName
+                creatorId
                 createdAt
                 updatedAt
               }
@@ -1169,8 +1277,8 @@ export class APIService {
           id
           postID
           content
-          creatorId
           creatorName
+          creatorId
           post {
             __typename
             id
@@ -1185,8 +1293,8 @@ export class APIService {
                 id
                 postID
                 content
-                creatorId
                 creatorName
+                creatorId
                 createdAt
                 updatedAt
               }
@@ -1212,6 +1320,57 @@ export class APIService {
     )) as any;
     return <DeleteCommentMutation>response.data.deleteComment;
   }
+  async CommentsForPost(
+    postId: string,
+    limit?: number,
+    nextToken?: string
+  ): Promise<CommentsForPostQuery> {
+    const statement = `query CommentsForPost($postId: ID!, $limit: Int, $nextToken: String) {
+        commentsForPost(postId: $postId, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            postID
+            content
+            creatorName
+            creatorId
+            post {
+              __typename
+              id
+              title
+              content
+              creatorId
+              creatorName
+              comments {
+                __typename
+                nextToken
+              }
+              noOfLikes
+              noOfComments
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      postId
+    };
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CommentsForPostQuery>response.data.commentsForPost;
+  }
   async GetPost(id: string): Promise<GetPostQuery> {
     const statement = `query GetPost($id: ID!) {
         getPost(id: $id) {
@@ -1228,8 +1387,8 @@ export class APIService {
               id
               postID
               content
-              creatorId
               creatorName
+              creatorId
               post {
                 __typename
                 id
@@ -1283,8 +1442,8 @@ export class APIService {
                 id
                 postID
                 content
-                creatorId
                 creatorName
+                creatorId
                 createdAt
                 updatedAt
               }
@@ -1320,8 +1479,8 @@ export class APIService {
           id
           postID
           content
-          creatorId
           creatorName
+          creatorId
           post {
             __typename
             id
@@ -1336,8 +1495,8 @@ export class APIService {
                 id
                 postID
                 content
-                creatorId
                 creatorName
+                creatorId
                 createdAt
                 updatedAt
               }
@@ -1373,8 +1532,8 @@ export class APIService {
             id
             postID
             content
-            creatorId
             creatorName
+            creatorId
             post {
               __typename
               id
@@ -1436,8 +1595,8 @@ export class APIService {
                 id
                 postID
                 content
-                creatorId
                 creatorName
+                creatorId
                 createdAt
                 updatedAt
               }
@@ -1472,6 +1631,66 @@ export class APIService {
     )) as any;
     return <ListByPostIdsQuery>response.data.listByPostIds;
   }
+  async TotalLikes(
+    noOfLikes?: number,
+    sortDirection?: ModelSortDirection,
+    filter?: ModelPostFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<TotalLikesQuery> {
+    const statement = `query TotalLikes($noOfLikes: Int, $sortDirection: ModelSortDirection, $filter: ModelPostFilterInput, $limit: Int, $nextToken: String) {
+        totalLikes(noOfLikes: $noOfLikes, sortDirection: $sortDirection, filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            title
+            content
+            creatorId
+            creatorName
+            comments {
+              __typename
+              items {
+                __typename
+                id
+                postID
+                content
+                creatorName
+                creatorId
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            noOfLikes
+            noOfComments
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (noOfLikes) {
+      gqlAPIServiceArguments.noOfLikes = noOfLikes;
+    }
+    if (sortDirection) {
+      gqlAPIServiceArguments.sortDirection = sortDirection;
+    }
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <TotalLikesQuery>response.data.totalLikes;
+  }
   async ListByPostComments(
     postID?: string,
     content?: ModelStringKeyConditionInput,
@@ -1488,8 +1707,8 @@ export class APIService {
             id
             postID
             content
-            creatorId
             creatorName
+            creatorId
             post {
               __typename
               id
@@ -1536,6 +1755,61 @@ export class APIService {
     )) as any;
     return <ListByPostCommentsQuery>response.data.listByPostComments;
   }
+  OnAddNewLikeListener(
+    postId: string
+  ): Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onAddNewLike">>
+  > {
+    const statement = `subscription OnAddNewLike($postId: ID!) {
+        onAddNewLike(postId: $postId) {
+          __typename
+          id
+          title
+          content
+          creatorId
+          creatorName
+          comments {
+            __typename
+            items {
+              __typename
+              id
+              postID
+              content
+              creatorName
+              creatorId
+              post {
+                __typename
+                id
+                title
+                content
+                creatorId
+                creatorName
+                noOfLikes
+                noOfComments
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          noOfLikes
+          noOfComments
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      postId
+    };
+    return API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    ) as Observable<
+      SubscriptionResponse<Pick<__SubscriptionContainer, "onAddNewLike">>
+    >;
+  }
+
   OnCreatePostListener: Observable<
     SubscriptionResponse<Pick<__SubscriptionContainer, "onCreatePost">>
   > = API.graphql(
@@ -1555,8 +1829,8 @@ export class APIService {
               id
               postID
               content
-              creatorId
               creatorName
+              creatorId
               post {
                 __typename
                 id
@@ -1604,8 +1878,8 @@ export class APIService {
               id
               postID
               content
-              creatorId
               creatorName
+              creatorId
               post {
                 __typename
                 id
@@ -1653,8 +1927,8 @@ export class APIService {
               id
               postID
               content
-              creatorId
               creatorName
+              creatorId
               post {
                 __typename
                 id
@@ -1693,8 +1967,8 @@ export class APIService {
           id
           postID
           content
-          creatorId
           creatorName
+          creatorId
           post {
             __typename
             id
@@ -1709,8 +1983,8 @@ export class APIService {
                 id
                 postID
                 content
-                creatorId
                 creatorName
+                creatorId
                 createdAt
                 updatedAt
               }
@@ -1740,8 +2014,8 @@ export class APIService {
           id
           postID
           content
-          creatorId
           creatorName
+          creatorId
           post {
             __typename
             id
@@ -1756,8 +2030,8 @@ export class APIService {
                 id
                 postID
                 content
-                creatorId
                 creatorName
+                creatorId
                 createdAt
                 updatedAt
               }
@@ -1787,8 +2061,8 @@ export class APIService {
           id
           postID
           content
-          creatorId
           creatorName
+          creatorId
           post {
             __typename
             id
@@ -1803,8 +2077,8 @@ export class APIService {
                 id
                 postID
                 content
-                creatorId
                 creatorName
+                creatorId
                 createdAt
                 updatedAt
               }

@@ -1,4 +1,32 @@
 # this is an auto generated file. This will be overwritten
+query CommentsForPost($postId: ID!, $limit: Int, $nextToken: String) {
+  commentsForPost(postId: $postId, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      postID
+      content
+      creatorName
+      creatorId
+      post {
+        id
+        title
+        content
+        creatorId
+        creatorName
+        comments {
+          nextToken
+        }
+        noOfLikes
+        noOfComments
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
 query GetPost($id: ID!) {
   getPost(id: $id) {
     id
@@ -11,8 +39,8 @@ query GetPost($id: ID!) {
         id
         postID
         content
-        creatorId
         creatorName
+        creatorId
         post {
           id
           title
@@ -52,8 +80,8 @@ query ListPosts(
           id
           postID
           content
-          creatorId
           creatorName
+          creatorId
           createdAt
           updatedAt
         }
@@ -72,8 +100,8 @@ query GetComment($id: ID!) {
     id
     postID
     content
-    creatorId
     creatorName
+    creatorId
     post {
       id
       title
@@ -85,8 +113,8 @@ query GetComment($id: ID!) {
           id
           postID
           content
-          creatorId
           creatorName
+          creatorId
           createdAt
           updatedAt
         }
@@ -111,8 +139,8 @@ query ListComments(
       id
       postID
       content
-      creatorId
       creatorName
+      creatorId
       post {
         id
         title
@@ -158,8 +186,48 @@ query ListByPostIds(
           id
           postID
           content
-          creatorId
           creatorName
+          creatorId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      noOfLikes
+      noOfComments
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query TotalLikes(
+  $noOfLikes: Int
+  $sortDirection: ModelSortDirection
+  $filter: ModelPostFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  totalLikes(
+    noOfLikes: $noOfLikes
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      title
+      content
+      creatorId
+      creatorName
+      comments {
+        items {
+          id
+          postID
+          content
+          creatorName
+          creatorId
           createdAt
           updatedAt
         }
@@ -193,8 +261,8 @@ query ListByPostComments(
       id
       postID
       content
-      creatorId
       creatorName
+      creatorId
       post {
         id
         title
